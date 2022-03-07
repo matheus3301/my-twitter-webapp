@@ -1,37 +1,16 @@
-import Login from './pages/Login';
-
-import { createTheme, responsiveFontSizes } from '@mui/material';
-
-let theme = createTheme({
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        contained: {
-          borderRadius: 20,
-        },
-      },
-    },
-  },
-  palette: {
-    background: {
-      default: '#14171A',
-    },
-    primary: {
-      main: '#1DA1F2',
-      contrastText: '#FFF',
-    },
-
-    text: {
-      primary: '#FFF',
-      secondary: '#AAB8C2',
-    },
-  },
-});
-
-theme = responsiveFontSizes(theme);
+import { ThemeProvider } from '@mui/system';
+import { AuthProvider } from './contexts/auth';
+import Routes from './routes';
+import TwitterTheme from './themes/TwitterTheme';
 
 function App() {
-  return <Login theme={theme} />;
+  return (
+    <ThemeProvider theme={TwitterTheme}>
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
+    </ThemeProvider>
+  );
 }
 
 export default App;
